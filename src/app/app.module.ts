@@ -9,6 +9,8 @@ import {PostService} from "./services/post.service";
 import { PostSaveComponent } from './post-save/post-save.component';
 import { ButtonComponent } from './bootstrap/button/button.component';
 import { GlyphComponent } from './bootstrap/glyph/glyph.component';
+import {FormsModule} from "@angular/forms";
+import {MessageService} from "./services/message.service";
 
 const appRoutes: Routes = [
     {path: '', pathMatch: 'full', component: PostListComponent},
@@ -28,9 +30,10 @@ const appRoutes: Routes = [
     imports: [
         BrowserModule,
         RouterModule.forRoot(appRoutes),
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
-    providers: [PostService],
+    providers: [PostService, MessageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
