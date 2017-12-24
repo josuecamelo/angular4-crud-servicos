@@ -21,7 +21,14 @@
       <td>{{post.title}}</td>
       <td>{{post.body}}</td>
       <td>
-        -
+        <a [routerLink]="['/posts',post.id,'edit']">
+          <app-glyph icon="pencil"></app-glyph>
+          Edit
+        </a> |
+        <!--<a href="javascript:void(0)" (click)="openModal(post)">-->
+          <!--<app-glyph icon="trash"></app-glyph>-->
+          <!--Delete-->
+        <!--</a>-->
       </td>
     </tr>
     </tbody>

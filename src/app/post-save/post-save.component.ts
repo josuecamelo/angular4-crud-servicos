@@ -17,11 +17,16 @@ export class PostSaveComponent implements OnInit {
 
   constructor(private postService: PostService,
               private router: Router,
-              private route: ActivatedRoute,
+              private route: ActivatedRoute, //pegando rota do momento
               private messageService: MessageService) {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if(params.hasOwnProperty("id")){
+        this.postService.find(+params['id']).subscribe(data=>this.post = data);
+      }
+    });
   }
 
   save() {
