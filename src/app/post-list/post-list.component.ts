@@ -8,7 +8,7 @@ import {PostService} from "../services/post.service";
 })
 export class PostListComponent implements OnInit {
   posts:any = [];
-  
+
   constructor(private postService: PostService) { }
 
   ngOnInit() {
