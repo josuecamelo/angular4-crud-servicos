@@ -16,4 +16,13 @@ export class PostListComponent implements OnInit {
         data => this.posts = data //atribuindo valor
     )
   }
+
+  destroy(id, index) {
+    if (confirm('Deseja excluir este post?')) {
+      this.postService.destroy(+id).subscribe(() => {
+         this.posts.splice(index, 1);
+         alert('post excluido');
+      });
+    }
+  }
 }
