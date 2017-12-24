@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import { PostListComponent } from './post-list/post-list.component';
 import {Routes, RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
+import {PostService} from "./services/post.service";
 
 const appRoutes: Routes = [
     {path: '', pathMatch: 'full', component: PostListComponent},
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
         RouterModule.forRoot(appRoutes),
         HttpClientModule
     ],
-    providers: [],
+    providers: [PostService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
