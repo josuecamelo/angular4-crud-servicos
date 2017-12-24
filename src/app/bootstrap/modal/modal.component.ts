@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+
+declare let $;
 
 @Component({
   selector: 'app-modal',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild('divModal')
+  divModal: ElementRef;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  open() {
+    $(this.divModal.nativeElement).modal('show');
+  }
+
+  close() {
+    $(this.divModal.nativeElement).modal('hide');
+  }
 }

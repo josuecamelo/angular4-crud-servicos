@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+
+declare let $;
 
 @Component({
   selector: 'app-alert',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlertComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  color = 'success';
+
+  @Input()
+  close = false;
+
+  @Input()
+  timeout = null;
+
+  @ViewChild('divAlert')
+  divAlert: ElementRef;
+
+  constructor() {
+  }
 
   ngOnInit() {
+    if (this.timeout) {
+      setTimeout(() => {
+        $(this.divAlert.nativeElement).alert('close');
+      }, this.timeout);
+    }
   }
 
 }
