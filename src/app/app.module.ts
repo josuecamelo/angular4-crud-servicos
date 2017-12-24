@@ -11,6 +11,8 @@ import { ButtonComponent } from './bootstrap/button/button.component';
 import { GlyphComponent } from './bootstrap/glyph/glyph.component';
 import {FormsModule} from "@angular/forms";
 import {MessageService} from "./services/message.service";
+import { ModalComponent } from './bootstrap/modal/modal.component';
+import { AlertComponent } from './bootstrap/alert/alert.component';
 
 const appRoutes: Routes = [
     {path: '', pathMatch: 'full', component: PostListComponent},
@@ -26,6 +28,8 @@ const appRoutes: Routes = [
         PostSaveComponent,
         ButtonComponent,
         GlyphComponent,
+        ModalComponent,
+        AlertComponent,
     ],
     imports: [
         BrowserModule,
