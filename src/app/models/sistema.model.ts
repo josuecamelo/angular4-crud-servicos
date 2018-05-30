@@ -7,5 +7,5 @@ export class Sistema {
     sigla: String;
     email: String;
     url: String;
-    status: number;
+    status: String;
 }
