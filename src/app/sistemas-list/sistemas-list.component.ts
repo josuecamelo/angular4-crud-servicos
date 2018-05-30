@@ -21,9 +21,11 @@ import {PagerService} from "../services/sistema-pagination.services";
 
 export class SistemasListComponent implements OnInit {
   sistemas:any = [];
+
   descricao = '';
   sigla = '';
   email = '';
+
   //public pesqForm:FormGroup;
   message = '';
   paginationSistema:PaginationSistema;
@@ -42,13 +44,23 @@ export class SistemasListComponent implements OnInit {
   }
 
   pesquisar(){
+      let objPesq:any = new Object();
 
-      this.sistemaService.getSistemas().subscribe((data: PaginationSistema) => {
+      //if(this.sigla != ''){
+        objPesq.sigla = this.sigla
+      //}
+      //if(this.descricao != ''){
+        objPesq.descricao = this.descricao;
+      //}
+      //if(this.email != ''){
+        objPesq.email = this.email;
+      //}
+
+      this.sistemaService.getSistemas('listar', objPesq).subscribe((data: PaginationSistema) => {
         this.paginationSistema = data;
         this.setPage(1);
-        this.toggle();
+        this.show = true;
       });
-
   }
 
   clear(){
@@ -61,7 +73,10 @@ export class SistemasListComponent implements OnInit {
   setPage(page: number) {
     //console.log(page);
     // get pager object from service
-    //console.log(this.paginationSistema.total);
+    if(this.paginationSistema.total == 0){
+      this.show = false;
+      alert('Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!');
+    }
     this.pager = this.pagerService.getPager(this.paginationSistema.total, page, 50);
     // get current page of items
     this.pagedItems = this.paginationSistema.data.slice(this.pager.startIndex, this.pager.endIndex + 1);

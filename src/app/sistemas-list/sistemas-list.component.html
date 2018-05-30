@@ -38,7 +38,7 @@
     </div>
   </div>
 
-  <div class="row" *ngIf="paginationSistema && show">
+  <div class="row" *ngIf="paginationSistema && show && paginationSistema.data.length > 0">
     <fieldset>
       <legend>Resultado da Consulta</legend>
       <table class="table table-condensed table-striped">
@@ -62,8 +62,12 @@
         </tbody>
       </table>
     </fieldset>
-    <!-- pager -->
-    <ul *ngIf="(pager.pages && pager.pages.length)" class="pagination">
+
+    <!--
+      Componente de paginação que só mostra a paginação caso possua
+      mais de 50 registros ou seja, mais de uma página
+    -->
+    <ul *ngIf="(pager.pages && pager.pages.length) && pager.totalPages > 1 " class="pagination">
       <li [ngClass]="{disabled:pager.currentPage === 1}">
         <a (click)="setPage(1)"> << </a>
       </li>
