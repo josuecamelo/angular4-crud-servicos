@@ -17,6 +17,7 @@ import { SistemasListComponent } from './sistemas-list/sistemas-list.component';
 import {ApiService} from "./services/api.service";
 import {SistemaService} from "./services/sistema.service";
 import {PagerService} from "./services/sistema-pagination.services";
+import { SistemaSaveComponent } from './sistema-save/sistema-save.component';
 
 
 const appRoutes: Routes = [
@@ -25,6 +26,7 @@ const appRoutes: Routes = [
     {path: 'posts/create', component: PostSaveComponent},
     {path: 'posts/:id/edit', component: PostSaveComponent},
     {path: 'sistemas', component: SistemasListComponent},
+    {path: 'sistemas/create', component: SistemaSaveComponent},
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
         GlyphComponent,
         ModalComponent,
         AlertComponent,
-        SistemasListComponent
+        SistemasListComponent,
+        SistemaSaveComponent
     ],
     imports: [
         BrowserModule,

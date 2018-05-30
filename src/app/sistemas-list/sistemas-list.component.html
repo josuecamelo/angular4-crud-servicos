@@ -34,7 +34,10 @@
               <div class="form-group">
                 <button (click)="pesquisar()" class="btn btn-primary" type="submit">Pesquisar</button>
                 <button (click)="clear()" class="btn btn-warning">Limpar</button>
-                <button class="btn btn-success">Novo</button>
+                <app-button color="btn btn-success" routerLink="/sistemas/create">
+                  <app-glyph icon="plus"></app-glyph>
+                  Novo
+                </app-button>
               </div>
             </fieldset>
           </form>
