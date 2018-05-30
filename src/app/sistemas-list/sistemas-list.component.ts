@@ -61,9 +61,9 @@ export class SistemasListComponent implements OnInit {
   }
 
   setPage(page: number) {
-    console.log(page);
+    //console.log(page);
     // get pager object from service
-    console.log(this.paginationSistema.total);
+    //console.log(this.paginationSistema.total);
     this.pager = this.pagerService.getPager(this.paginationSistema.total, page, 50);
     // get current page of items
     this.pagedItems = this.paginationSistema.data.slice(this.pager.startIndex, this.pager.endIndex + 1);

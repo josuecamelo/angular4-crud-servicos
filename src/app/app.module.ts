@@ -15,7 +15,6 @@ import { ModalComponent } from './bootstrap/modal/modal.component';
 import { AlertComponent } from './bootstrap/alert/alert.component';
 import { SistemasListComponent } from './sistemas-list/sistemas-list.component';
 import {ApiService} from "./services/api.service";
-import { PaginacaoComponent } from './paginacao/paginacao.component';
 import {SistemaService} from "./services/sistema.service";
 import {PagerService} from "./services/sistema-pagination.services";
 
@@ -37,8 +36,7 @@ const appRoutes: Routes = [
         GlyphComponent,
         ModalComponent,
         AlertComponent,
-        SistemasListComponent,
-        PaginacaoComponent
+        SistemasListComponent
     ],
     imports: [
         BrowserModule,
