@@ -33,6 +33,7 @@ export class SistemasListComponent implements OnInit {
   pager: any = {};
   pagedItems: any[];
   public show:boolean = false;
+  paginaAtual:number = 1;
 
   constructor(private api: ApiService, private sistemaService: SistemaService,
               private messageService: MessageService, private pagerService: PagerService,  private router: Router) {
@@ -43,24 +44,25 @@ export class SistemasListComponent implements OnInit {
 
   }
 
-  pesquisar(){
+  pesquisar( page:number = 1){
       let objPesq:any = new Object();
+      objPesq.sigla = this.sigla
+      objPesq.descricao = this.descricao;
+      objPesq.email = this.email;
 
-      //if(this.sigla != ''){
-        objPesq.sigla = this.sigla
-      //}
-      //if(this.descricao != ''){
-        objPesq.descricao = this.descricao;
-      //}
-      //if(this.email != ''){
-        objPesq.email = this.email;
-      //}
-
-      this.sistemaService.getSistemas('listar', objPesq).subscribe((data: PaginationSistema) => {
-        this.paginationSistema = data;
-        this.setPage(1);
-        this.show = true;
-      });
+      if(page == 1){
+        this.sistemaService.getSistemas('listar', objPesq, page).subscribe((data: PaginationSistema) => {
+          this.paginationSistema = data;
+          this.setPage(1);
+          this.show = true;
+        });
+      }else{
+        this.sistemaService.getSistemas('listar', objPesq, page).subscribe((data: PaginationSistema) => {
+          this.paginationSistema = data;
+          this.setPage(page);
+          this.show = true;
+        });
+      }
   }
 
   clear(){
@@ -71,7 +73,11 @@ export class SistemasListComponent implements OnInit {
   }
 
   setPage(page: number) {
-    //console.log(page);
+    if(page != this.paginaAtual){
+      this.pesquisar(page);
+      this.paginaAtual = page
+    }
+
     // get pager object from service
     if(this.paginationSistema.total == 0){
       this.show = false;
