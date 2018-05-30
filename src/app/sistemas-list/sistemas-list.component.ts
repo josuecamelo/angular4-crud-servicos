@@ -30,7 +30,7 @@ export class SistemasListComponent implements OnInit {
   private allItems: any[];
   pager: any = {};
   pagedItems: any[];
-
+  public show:boolean = false;
 
   constructor(private api: ApiService, private sistemaService: SistemaService,
               private messageService: MessageService, private pagerService: PagerService,  private router: Router) {
@@ -47,13 +47,14 @@ export class SistemasListComponent implements OnInit {
         this.paginationSistema = data;
         this.setPage(1);
       });
-
+      this.toggle();
   }
 
   clear(){
     this.descricao = '';
     this.sigla = '';
     this.email = '';
+    this.toggle();
   }
 
   setPage(page: number) {
@@ -63,5 +64,9 @@ export class SistemasListComponent implements OnInit {
     this.pager = this.pagerService.getPager(this.paginationSistema.total, page, 50);
     // get current page of items
     this.pagedItems = this.paginationSistema.data.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  toggle() {
+    this.show = !this.show;
   }
 }
