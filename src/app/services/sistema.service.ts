@@ -15,4 +15,8 @@ export class SistemaService{
     getSistemas(endpoint: string, params?: any) {
         return this.http.post<PaginationSistema>(this.url + '/' + endpoint, params);
     }
+
+    gravarSistema(endpoint: string, params?: any){
+        return this.http.post<any>(this.url + '/' + endpoint, params);
+    }
 }
