@@ -39,9 +39,15 @@
   </div>
 
   <div class="row">
-    <ul>
-          <li *ngFor="let registro of registros.error">{{registro.error}}</li>
-    </ul>
+    <div *ngIf="paginationSistema">
+      <ul>
+        <li *ngFor="let sistema of paginationSistema.data">{{sistema.descricao}}</li>
+      </ul>
+      <p>Showing booking {{paginationSistema.from}} to {{paginationSistema.to}} of {{paginationSistema.total}}</p>
+      <p>Page {{paginationSistema.current_page}} of {{paginationSistema.last_page}}</p>
+      <button (click)="prevPage()" [disabled]="!paginationSistema.prev_page_url" >Prev</button>
+      <button (click)="nextPage()" [disabled]="!paginationSistema.next_page_url">Next</button>
+    </div>
   </div>
 
 
