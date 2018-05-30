@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PaginationSistema} from "../models/pagination-sistema.model";
 import {ApiService} from "../services/api.service";
 import {MessageService} from "../services/message.service";
 import {SistemaService} from "../services/sistema.service";
@@ -17,10 +16,7 @@ export class SistemaSaveComponent implements OnInit {
   sigla = '';
   email = '';
   url = '';
-
   message = '';
-  paginationSistema:PaginationSistema;
-
 
   constructor(private api: ApiService, private sistemaService: SistemaService,
               private messageService: MessageService, private router: Router) {
@@ -31,11 +27,24 @@ export class SistemaSaveComponent implements OnInit {
   }
 
   save(){
-    this.sistemaService.getSistemas('incluir',{descricao: 'Sistema'}).subscribe(
+    let objReq = {
+      descricao: this.descricao,
+      sigla: this.sigla,
+      email: this.email,
+      url: this.url
+    }
+
+
+    this.sistemaService.gravarSistema('incluir', objReq).subscribe(
         (data) => {
-
-
-
+          console.log(data);
+          if(data.error){
+            alert('Dados obrigatórios não informados.');
+          }else{
+            console.log(data);
+            alert('Operação realizada com sucesso.');
+            this.router.navigate(['/sistemas'])
+          }
         },
         (error) => {
           console.log(error)
