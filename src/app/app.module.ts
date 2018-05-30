@@ -17,6 +17,7 @@ import { SistemasListComponent } from './sistemas-list/sistemas-list.component';
 import {ApiService} from "./services/api.service";
 import { PaginacaoComponent } from './paginacao/paginacao.component';
 import {SistemaService} from "./services/sistema.service";
+import {PagerService} from "./services/sistema-pagination.services";
 
 
 const appRoutes: Routes = [
@@ -46,7 +47,7 @@ const appRoutes: Routes = [
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [PostService, ApiService, SistemaService, MessageService],
+    providers: [PostService, ApiService, SistemaService, MessageService, PagerService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

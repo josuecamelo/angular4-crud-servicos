@@ -13,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./paginacao.component.css']
 })
 export class PaginacaoComponent implements OnInit {
-  public static readonly TOTAL_PAGS_PADRAO: number = 20;
+  public static readonly TOTAL_PAGS_PADRAO: number = 10;
   public static readonly PAG_PADRAO: number = 1;
-  public static readonly REG_PADRAO: number = 0;
+  public static readonly REG_PADRAO: number = 1;
   public static readonly ADJACENTES_PADRAO: number = 10;
 
   @Input() qtdPorPagina: number;
@@ -37,6 +37,7 @@ export class PaginacaoComponent implements OnInit {
     this.pagina = +this.route.snapshot.queryParams['pagina'] || PaginacaoComponent.PAG_PADRAO;
     this.totalRegistros = this.totalRegistros || PaginacaoComponent.REG_PADRAO;
     this.qtdPaginas = Math.ceil(this.totalRegistros / this.qtdPorPagina);
+
     this.gerarLinks();
   }
 
@@ -46,10 +47,13 @@ export class PaginacaoComponent implements OnInit {
   gerarLinks() {
     this.exibirProximo = this.qtdPaginas !== this.pagina;
     this.paginas = [];
+
     let iniAdjacente = (this.pagina - this.qtdAdjacentes <= 0) ? 1 :
         (this.pagina - this.qtdAdjacentes);
+
     let fimAdjacente = (this.pagina + this.qtdAdjacentes >= this.qtdPaginas) ?
         this.qtdPaginas : (this.pagina + this.qtdAdjacentes);
+
     for (let i=iniAdjacente; i<=fimAdjacente; i++) {
       this.paginas.push(i);
     }
@@ -67,5 +71,6 @@ export class PaginacaoComponent implements OnInit {
     this.pagina = pagina;
     this.gerarLinks();
     this.onPaginate.emit(pagina);
+    console.log(pagina);
   }
 }

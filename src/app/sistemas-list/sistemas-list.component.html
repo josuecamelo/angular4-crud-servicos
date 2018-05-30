@@ -38,24 +38,51 @@
     </div>
   </div>
 
-  <div class="row">
-    <div *ngIf="paginationSistema">
-      <ul>
-        <li *ngFor="let sistema of paginationSistema.data">{{sistema.descricao}}</li>
-      </ul>
-      <p>Showing booking {{paginationSistema.from}} to {{paginationSistema.to}} of {{paginationSistema.total}}</p>
-      <p>Page {{paginationSistema.current_page}} of {{paginationSistema.last_page}}</p>
-      <button (click)="prevPage()" [disabled]="!paginationSistema.prev_page_url" >Prev</button>
-      <button (click)="nextPage()" [disabled]="!paginationSistema.next_page_url">Next</button>
-    </div>
+  <div class="row" *ngIf="paginationSistema">
+    <fieldset>
+      <legend>Resultado da Consulta</legend>
+      <table class="table table-condensed table-striped">
+        <thead>
+          <th class="text-center">Descrição</th>
+          <th class="text-center">Sigla</th>
+          <th class="text-center">E-mail de Atendimento</th>
+          <th class="text-center">URL</th>
+          <th class="text-center">Status</th>
+          <th class="text-center">Ações</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sistema of paginationSistema.data">
+            <td class="text-center">{{ sistema.descricao }}</td>
+            <td class="text-center">{{ sistema.sigla }}</td>
+            <td class="text-center">{{ sistema.email }}</td>
+            <td class="text-center">{{ sistema.url }}</td>
+            <td class="text-center">{{ sistema.status }}</td>
+            <td class="text-center">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </fieldset>
+
+    <!-- items being paged -->
+    <div *ngFor="let item of paginationSistema.data">{{item.name}}</div>
+
+    <!-- pager -->
+    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+      </li>
+      <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+      </li>
+      <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+      </li>
+    </ul>
   </div>
-
-
-
-  <!--<app-paginacao-->
-          <!--[qtdPorPagina]="50"-->
-          <!--[totalRegistros]="registros.data.length"-->
-          <!--[qtdAdjacentes]="10"-->
-          <!--(onPaginate)="paginar($event)">-->
-  <!--</app-paginacao>-->
 </div>

@@ -10,6 +10,7 @@ import { Observable } from "rxjs";
 import {SistemaService} from "../services/sistema.service";
 import {PaginationSistema} from "../models/pagination-sistema.model";
 import {Sistema} from "../models/sistema.model";
+import {PagerService} from "../services/sistema-pagination.services";
 
 
 @Component({
@@ -25,11 +26,18 @@ export class SistemasListComponent implements OnInit {
   email = '';
   //public pesqForm:FormGroup;
   message = '';
-  registros:any = [];
   paginationSistema:PaginationSistema;
-  sistema:Sistema;
 
-  constructor(private api: ApiService, private sistemaService: SistemaService, private messageService: MessageService) {
+  // array of all items to be paged
+  private allItems: any[];
+  // pager object
+  pager: any = {};
+  // paged items
+  pagedItems: any[];
+
+
+  constructor(private api: ApiService, private sistemaService: SistemaService,
+              private messageService: MessageService, private pagerService: PagerService) {
     this.message = this.messageService.message;
   }
 
@@ -38,13 +46,20 @@ export class SistemasListComponent implements OnInit {
   }
 
   save(){
-    this.sistemaService.getSistemas().subscribe((data: PaginationSistema) => this.paginationSistema =  data );
+    this.sistemaService.getSistemas().subscribe((data: PaginationSistema) => this.paginationSistema = data);
+    this.setPage(1);
   }
-
 
   clear(){
     this.descricao = '';
     this.sigla = '';
     this.email = '';
+  }
+
+  setPage(page: number) {
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.paginationSistema.data.length, page);
+    // get current page of items
+    this.pagedItems = this.paginationSistema.data.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 }
