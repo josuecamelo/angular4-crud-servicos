@@ -14,6 +14,9 @@ import {MessageService} from "./services/message.service";
 import { ModalComponent } from './bootstrap/modal/modal.component';
 import { AlertComponent } from './bootstrap/alert/alert.component';
 import { SistemasListComponent } from './sistemas-list/sistemas-list.component';
+import {ApiService} from "./services/api.service";
+import { PaginacaoComponent } from './paginacao/paginacao.component';
+
 
 const appRoutes: Routes = [
     {path: '', pathMatch: 'full', component: PostListComponent},
@@ -33,6 +36,7 @@ const appRoutes: Routes = [
         ModalComponent,
         AlertComponent,
         SistemasListComponent,
+        PaginacaoComponent,
     ],
     imports: [
         BrowserModule,
@@ -41,7 +45,7 @@ const appRoutes: Routes = [
         FormsModule,
         ReactiveFormsModule
     ],
-    providers: [PostService, MessageService],
+    providers: [PostService, ApiService, MessageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
