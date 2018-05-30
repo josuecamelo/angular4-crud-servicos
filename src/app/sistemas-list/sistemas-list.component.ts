@@ -67,7 +67,7 @@ export class SistemasListComponent implements OnInit {
     this.descricao = '';
     this.sigla = '';
     this.email = '';
-    this.toggle();
+    this.show = false;
   }
 
   setPage(page: number) {
