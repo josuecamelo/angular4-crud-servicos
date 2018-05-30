@@ -45,7 +45,7 @@ export class SistemasListComponent implements OnInit {
 
   }
 
-  save(){
+  pesquisar(){
 
       this.sistemaService.getSistemas().subscribe((data: PaginationSistema) => {
         this.paginationSistema = data;
@@ -63,7 +63,8 @@ export class SistemasListComponent implements OnInit {
   setPage(page: number) {
     console.log(page);
     // get pager object from service
-    this.pager = this.pagerService.getPager(this.paginationSistema.data.length, page);
+    console.log(this.paginationSistema.total);
+    this.pager = this.pagerService.getPager(this.paginationSistema.total, page, 50);
     // get current page of items
     this.pagedItems = this.paginationSistema.data.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }

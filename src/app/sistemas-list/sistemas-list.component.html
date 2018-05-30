@@ -27,7 +27,7 @@
               </div>
 
               <div class="form-group">
-                <button (click)="save()" class="btn btn-primary" type="submit">Pesquisar</button>
+                <button (click)="pesquisar()" class="btn btn-primary" type="submit">Pesquisar</button>
                 <button (click)="clear()" class="btn btn-warning">Limpar</button>
                 <button class="btn btn-success">Novo</button>
               </div>
@@ -63,7 +63,7 @@
       </table>
     </fieldset>
     <!-- pager -->
-    <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+    <ul *ngIf="(pager.pages && pager.pages.length)" class="pagination">
       <li [ngClass]="{disabled:pager.currentPage === 1}">
         <a (click)="setPage(1)"> << </a>
       </li>
