@@ -46,8 +46,9 @@ export class SistemasListComponent implements OnInit {
       this.sistemaService.getSistemas().subscribe((data: PaginationSistema) => {
         this.paginationSistema = data;
         this.setPage(1);
+        this.toggle();
       });
-      this.toggle();
+
   }
 
   clear(){
