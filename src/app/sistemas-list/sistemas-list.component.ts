@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {Router, ActivatedRoute} from "@angular/router";
 import {MessageService} from "../services/message.service";
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -27,17 +27,13 @@ export class SistemasListComponent implements OnInit {
   //public pesqForm:FormGroup;
   message = '';
   paginationSistema:PaginationSistema;
-
-  // array of all items to be paged
   private allItems: any[];
-  // pager object
   pager: any = {};
-  // paged items
   pagedItems: any[];
 
 
   constructor(private api: ApiService, private sistemaService: SistemaService,
-              private messageService: MessageService, private pagerService: PagerService) {
+              private messageService: MessageService, private pagerService: PagerService,  private router: Router) {
     this.message = this.messageService.message;
   }
 
