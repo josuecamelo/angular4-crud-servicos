@@ -23,7 +23,7 @@
                 <label class="control-label col-sm-2">E-mail de atendimento do Sistema:</label>
                 <div class="col-sm-10">
                   <input type="email" #emailRef="ngModel" email  class="form-control" id="email" name="email" [(ngModel)]="email">
-                  <span class="help-block" *ngIf="emailRef.errors &&  (emailRef.dirty || emailRef.touched) ">
+                  <span class="help-block" *ngIf="!show && emailRef.errors &&  (emailRef.dirty || emailRef.touched) ">
                       <ul>
                         <li *ngIf="emailRef.errors.email">E-mail inválido.</li>
                       </ul>
@@ -65,7 +65,7 @@
             <td class="text-center">{{ sistema.email }}</td>
             <td class="text-center">{{ sistema.url }}</td>
             <td class="text-center">{{ sistema.status }}</td>
-            <td class="text-center">-</td>
+            <td class="text-center"><span class="glyphicon glyphicon-pencil"></span></td>
           </tr>
         </tbody>
       </table>
