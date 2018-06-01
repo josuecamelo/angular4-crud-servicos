@@ -22,13 +22,13 @@
                   <input type="text" class="form-control" id="sigla" name="sigla" [(ngModel)]="sigla">
                 </div>
               </div>
-              <div class="form-group" [ngClass]="{'has-error': !emailRef.valid && (emailRef.dirty || emailRef.touched)}">
+              <div class="form-group" [ngClass]="{'has-error': show && !emailRef.valid && (emailRef.dirty || emailRef.touched)}">
                 <label class="control-label col-sm-2">E-mail de atendimento do Sistema:</label>
                 <div class="col-sm-10">
                   <input type="email" #emailRef="ngModel" email  class="form-control" id="email" name="email" [(ngModel)]="email">
-                  <span class="help-block" *ngIf="!show && emailRef.errors &&  (emailRef.dirty || emailRef.touched) ">
+                  <span class="help-block" *ngIf="show && emailRef.errors &&  (emailRef.dirty || emailRef.touched) ">
                       <ul>
-                        <li *ngIf="emailRef.errors.email">E-mail inválido.</li>
+                        <li *ngIf="show && emailRef.errors.email">E-mail inválido.</li>
                       </ul>
                   </span>
                 </div>
