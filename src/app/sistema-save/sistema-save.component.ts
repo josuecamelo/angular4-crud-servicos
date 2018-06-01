@@ -26,6 +26,10 @@ export class SistemaSaveComponent implements OnInit {
   ngOnInit() {
   }
 
+  /*
+  * Metodo que efetua o envio de dados da a api restful
+  *
+  * */
   save(){
     let objReq = {
       descricao: this.descricao,
