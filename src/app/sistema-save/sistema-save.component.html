@@ -1,6 +1,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <div class="col-md-12" *ngIf="message">
+                <app-alert [close]="true" [timeout]="4000">{{message}}</app-alert>
+            </div>
             <div class="panel panel-primary">
                 <div class="panel-heading">Manter Sistema</div>
                 <div class="panel-body">

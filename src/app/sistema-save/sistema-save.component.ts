@@ -16,7 +16,7 @@ export class SistemaSaveComponent implements OnInit {
   sigla = '';
   email = '';
   url = '';
-  message = '';
+  message = null;
   //private element: ElementRef;
   @ViewChild("descricaoRef") inputDescricao: ElementRef;
   @ViewChild("siglaRef") inputSigla: ElementRef;
@@ -47,13 +47,15 @@ export class SistemaSaveComponent implements OnInit {
       url: this.url
     }
 
-
     this.sistemaService.gravarSistema('incluir', objReq).subscribe(
         (data) => {
+          console.log('passou....');
+          console.log(data);
           if(data.error){
             alert(data.data);
           }else{
-            alert('Operação realizada com sucesso.');
+            console.log('certinho');
+            this.messageService.message = 'Operação realizada com sucesso.';
             this.router.navigate(['/sistemas']);
           }
         },
@@ -61,5 +63,6 @@ export class SistemaSaveComponent implements OnInit {
           console.log(error)
         },
     );
+
   }
 }

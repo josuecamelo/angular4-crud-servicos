@@ -27,7 +27,7 @@ export class SistemasListComponent implements OnInit {
   email = '';
 
   //public pesqForm:FormGroup;
-  message = '';
+  message = null;
   paginationSistema:PaginationSistema;
   private allItems: any[];
   pager: any = {};
@@ -82,6 +82,7 @@ export class SistemasListComponent implements OnInit {
     if(this.paginationSistema.total == 0){
       this.show = false;
       alert('Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!');
+      //this.messageService.message = 'Nenhum Sistema foi encontrado. Favor revisar os critérios da sua pesquisa!';
     }
     this.pager = this.pagerService.getPager(this.paginationSistema.total, page, 50);
     // get current page of items
