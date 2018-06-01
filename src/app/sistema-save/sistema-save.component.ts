@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
 import {ApiService} from "../services/api.service";
 import {MessageService} from "../services/message.service";
 import {SistemaService} from "../services/sistema.service";
@@ -17,6 +17,9 @@ export class SistemaSaveComponent implements OnInit {
   email = '';
   url = '';
   message = '';
+  //private element: ElementRef;
+  @ViewChild("descricaoRef") inputDescricao: ElementRef;
+  @ViewChild("siglaRef") inputSigla: ElementRef;
 
   constructor(private api: ApiService, private sistemaService: SistemaService,
               private messageService: MessageService, private router: Router) {
@@ -24,6 +27,12 @@ export class SistemaSaveComponent implements OnInit {
   }
 
   ngOnInit() {
+    //(this.element.nativeElement).find('#descricao').focus();
+    //this.inputDescricao.nativeElement.focus()
+  }
+
+  public ngAfterViewInit(): void {
+    //this.inputDescricao.nativeElement.focus();
   }
 
   /*
@@ -41,13 +50,11 @@ export class SistemaSaveComponent implements OnInit {
 
     this.sistemaService.gravarSistema('incluir', objReq).subscribe(
         (data) => {
-          console.log(data);
           if(data.error){
-            alert('Dados obrigatórios não informados.');
+            alert(data.data);
           }else{
-            console.log(data);
             alert('Operação realizada com sucesso.');
-            this.router.navigate(['/sistemas'])
+            this.router.navigate(['/sistemas']);
           }
         },
         (error) => {
